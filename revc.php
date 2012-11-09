@@ -2,4 +2,5 @@
 
 require('common/bootstrap.php');
 
-echo get_reverse(get_complement(APP_DATASET));
+$strand = new Strand(str_split(APP_DATASET));
+echo $strand->getReverseComplement();

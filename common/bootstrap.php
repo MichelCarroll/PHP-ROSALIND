@@ -15,12 +15,5 @@ define('APP_DATASET', $filecontents);
 
 
 
-function get_complement($strand)
-{
-  return strtr($strand, 'ATCG', 'TAGC');
-}
-
-function get_reverse($strand)
-{
-  return implode('', array_reverse(str_split($strand)));
-}
+require('Strand.php');
+require('FASTA.php');
