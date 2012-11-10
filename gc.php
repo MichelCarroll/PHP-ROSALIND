@@ -11,11 +11,12 @@ foreach($fasta->getStrandMap() as $label => $strand)
   $resultMap[$label] = $strand->getGCContent();
 }
 
-asort($resultMap);
+arsort($resultMap);
+reset($resultMap);
 
 $winnerLabel = key($resultMap);
 $winnerResult = current($resultMap);
 
 echo '>'.$winnerLabel.PHP_EOL;
-echo ($winnerResult*100).'%';
+echo round($winnerResult*100, 5).'%';
 echo PHP_EOL;
