@@ -15,5 +15,7 @@ define('APP_DATASET', $filecontents);
 
 
 
-require('Strand.php');
+require('NucleicAcid.php');
 require('FASTA.php');
+require('DNA.php');
+require('RNA.php');

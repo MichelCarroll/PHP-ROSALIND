@@ -2,5 +2,5 @@
 
 require('common/bootstrap.php');
 
-$strand = new Strand(str_split(APP_DATASET));
+$strand = new NucleicAcid(str_split(APP_DATASET));
 echo $strand->getReverseComplement();

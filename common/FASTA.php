@@ -16,34 +16,39 @@ class FASTA
     $this->data = $data;
   }
   
-  public function getStrandMap()
+  public function getNucleicAcidMap()
   {
     $lines = explode(PHP_EOL, $this->data);
     $label = '';
-    $currentStrand = '';
+    $currentNucleicAcid = '';
     $strandMap = array();
     
     foreach($lines as $line)
     {
+      if(!strlen($line))
+      {
+        continue;
+      }
+      
       if($line[0] === '>')
       {
-        if(strlen($currentStrand) && strlen($label))
+        if(strlen($currentNucleicAcid) && strlen($label))
         {
-          $strandMap[$label] = new Strand($currentStrand);
-          $currentStrand = '';
+          $strandMap[$label] = new NucleicAcid($currentNucleicAcid);
+          $currentNucleicAcid = '';
         }
         $label = substr($line, 1);
       }
       else
       {
-        $currentStrand .= $line;
+        $currentNucleicAcid .= $line;
       }
     }
     
-    if(strlen($currentStrand) && strlen($label))
+    if(strlen($currentNucleicAcid) && strlen($label))
     {
-      $strandMap[$label] = new Strand($currentStrand);
-      $currentStrand = '';
+      $strandMap[$label] = new NucleicAcid($currentNucleicAcid);
+      $currentNucleicAcid = '';
     }
     
     return $strandMap;
